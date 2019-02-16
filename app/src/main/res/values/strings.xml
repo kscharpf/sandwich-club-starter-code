@@ -9,6 +9,8 @@
     <string name="unknown_label">Unknown</string>
     <string name="unavailable_label">Unavailable</string>
     <string name="not_listed_label">Not Listed</string>
+    <string name="loading_label">Loading…</string>
+    <string name="image_not_found_label">Image Not Found</string>
 
     <!-- Content descriptions-->
     <string name="sandwich_picture_content_description">Sandwich picture</string>

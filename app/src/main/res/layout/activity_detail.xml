@@ -17,7 +17,24 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/sandwich_picture_content_description"
             android:scaleType="centerCrop"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/loading_label"
+            android:textSize="24sp"
+            android:id="@+id/image_loading_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:text="@string/image_not_found_label"
+            android:id="@+id/image_not_found_tv"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"

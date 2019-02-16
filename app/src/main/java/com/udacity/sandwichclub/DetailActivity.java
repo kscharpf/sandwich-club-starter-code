@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
@@ -23,11 +25,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView imageIv = findViewById(R.id.image_iv);
+        final ImageView imageIv = findViewById(R.id.image_iv);
 
         Intent intent = getIntent();
         if (intent == null) {
             closeOnError();
+            return;
         }
 
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
@@ -46,12 +49,27 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
+        final TextView loadingTv = findViewById(R.id.image_loading_tv);
         populateUI(sandwich);
         Log.v(TAG, "Sandwich image URL: " + sandwich.getImage());
         Picasso.get()
                 .load(sandwich.getImage())
-                .error(R.drawable.nosuchimage)
-                .into(imageIv);
+                .into(imageIv, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        imageIv.setVisibility(View.VISIBLE);
+                        loadingTv.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        e.printStackTrace();
+                        TextView errorTv = findViewById(R.id.image_not_found_tv);
+                        errorTv.setVisibility(View.VISIBLE);
+                        loadingTv.setVisibility(View.GONE);
+                    }
+
+                });
 
 
         setTitle(sandwich.getMainName());
