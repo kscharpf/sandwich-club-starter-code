@@ -65,7 +65,7 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
         TextView tv = findViewById(R.id.origin_tv);
         if (sandwich.getPlaceOfOrigin() == null || sandwich.getPlaceOfOrigin().equals("")) {
-            tv.setText("Unknown");
+            tv.setText(R.string.unknown_label);
         } else {
             tv.setText(sandwich.getPlaceOfOrigin());
         }
@@ -82,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.description_tv);
         if (sandwich.getDescription() == null || sandwich.getDescription().equals("")) {
-            tv.setText("Unavailable");
+            tv.setText(R.string.unavailable_label);
         } else {
             tv.setText(sandwich.getDescription());
         }
@@ -90,7 +90,7 @@ public class DetailActivity extends AppCompatActivity {
         tv = findViewById(R.id.ingredients_tv);
         Log.v(TAG, "Ingredients len: " + sandwich.getIngredients().size());
         if (sandwich.getIngredients().isEmpty()) {
-            tv.setText("Not Listed");
+            tv.setText(R.string.not_listed_label);
         } else {
             StringBuilder sb = new StringBuilder();
 
